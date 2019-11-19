@@ -1,7 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function App() {
-  return <h1>GoStack - Módulo 8</h1>;
+  const [tech, setTech] = useState(['ReactJS', 'ReactNative']);
+  const [newTech, setNewTech] = useState('');
+
+  function handleAdd() {
+    setTech([...tech, newTech]);
+    setNewTech('');
+  }
+
+  return (
+    <>
+      <ul>
+        {tech.map(t => (
+          <li key={t}>{t}</li>
+        ))}
+      </ul>
+      <input
+        type="text"
+        onChange={e => setNewTech(e.target.value)}
+        value={newTech}
+      />
+      <button type="button" onClick={handleAdd}>
+        Adicionar
+      </button>
+    </>
+  );
 }
 
 export default App;
